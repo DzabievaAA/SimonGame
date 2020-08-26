@@ -1,0 +1,10 @@
+.circle {
+    position: relative;
+    margin: 20px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 200px;
+  }
+  .circle:focus {
+    transform: scale(1.2);
+  }
