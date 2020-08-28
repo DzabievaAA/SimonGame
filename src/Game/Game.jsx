@@ -3,42 +3,56 @@ import CircleElement from '../CircleElement/CircleElement';
 import styles from '../CircleElement/CircleElement.module.css';
 
 function Game() {
-    const refToCircle = useRef(null);
-    let arrayCircle = [];
-    let arrSize = 3;
-    function getRandomInRange(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    } 
+    const refRedCircle = useRef(null)
+    const refGreenCircle = useRef(null);
+    const refBlueCircle = useRef(null);
+    const refOrangeCircle = useRef(null);
+    let sequenceArray = []
 
-    function checkArray(x){
-        let retValue = false;
-        for(var i=0; i<arrSize; i++){
-            if(arrayCircle[i] === x){
-                retValue = true;
-                break;
-            }
+    let arrSize = 4;
+    let randomIntForCircle = 0;
+
+    function addElementToSequence(arrSize) {
+     randomIntForCircle = Math.floor(Math.random() * Math.floor(arrSize));
+     console.log( randomIntForCircle );
+        if (randomIntForCircle === 0) {
+          sequenceArray.push(refRedCircle);
         }
-        return retValue;
+        if (randomIntForCircle === 1) {
+          sequenceArray.push(refGreenCircle);
+       }
+        if (randomIntForCircle === 2) {
+          sequenceArray.push(refBlueCircle);
+      }
+        if (randomIntForCircle === 3) {
+          sequenceArray.push(refOrangeCircle);
+      }
     }
-debugger;
-    for (let i = 0; i < arrSize; i++) {
-        let valueCircle = getRandomInRange(1, 4)
-        if(!checkArray(valueCircle)){ 
-            arrayCircle.push(valueCircle); 
-        }
-        else{ 
-            i--; 
-        }
+
+    function playSequence () {
+      let promise = new Promise((resolve)=>{
+        resolve();
+      });
+      for ( let element of sequenceArray ){
+        promise = promise.then(()=> new Promise((resolve) => setTimeout(() =>{
+                                                                element.current.click();
+                                                                resolve() 
+                                                              }, 200
+                                                            )
+                                                )
+                              );
+      }
     }
     
-
   return (
     <div className="Game">
-      <CircleElement color={"Red"}/>
-      <CircleElement color={"Green"}/>
-      <CircleElement color={"Blue"}/>
-      <CircleElement color={"Orange"}/>
-      <button>start game</button>
+      <CircleElement ref={refRedCircle} color={"Red"}/>
+      <CircleElement ref={refGreenCircle} color={"Green"}/>
+      <CircleElement ref={refBlueCircle} color={"Blue"}/>
+      <CircleElement ref={refOrangeCircle} color={"Orange"}/>
+      <button onClick={()=>{
+        addElementToSequence(4)
+        playSequence() }}>start game</button>
     </div>
   );
 }
