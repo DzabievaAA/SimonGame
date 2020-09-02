@@ -51,6 +51,10 @@ function Game() {
       {["Red", "Green", "Blue", "Orange"].map((ColorName, index)=>{
         return <CircleElement  transform={`scale(${transforms[index]}, ${transforms[index]})`} 
         onClick={() =>{
+          if(sequenceArray.length === 0) {
+            //do nothing
+            return;            
+          }
           if(!animationPlaying){
             playAnimationForCircle(index)
             if (sequenceArray[correctAnswers] === index) {
@@ -67,6 +71,7 @@ function Game() {
               setCorrectAnswers(0);
             }
           }
+
          }
          } color={ColorName}/>
       })}
