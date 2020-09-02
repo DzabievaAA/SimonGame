@@ -1,12 +1,14 @@
 import React, {useState, useRef}from 'react';
 import CircleElement from '../CircleElement/CircleElement';
 import styles from '../CircleElement/CircleElement.module.css';
+import Score from '../Score/Score';
 
 function Game() {
     let [sequenceArray, setSequenceArray] = useState ([]);
     let randomIntForCircle = 0;
     let [transforms, setTransforms] = useState ([1, 1, 1, 1]);
     let [animationPlaying, setAnimationPlaying] = useState(false);
+    let [score, setScore] = useState(0);
 
     function addElementToSequence(arrSize) {
      randomIntForCircle = Math.floor(Math.random() * Math.floor(arrSize));
@@ -69,6 +71,7 @@ function Game() {
       <button onClick={()=>{
         addElementToSequence(4)
         playSequence() }}>start game</button>
+      <Score text={score}/>
     </div>
   );
 }
