@@ -9,6 +9,7 @@ function Game() {
     let [transforms, setTransforms] = useState ([1, 1, 1, 1]);
     let [animationPlaying, setAnimationPlaying] = useState(false);
     let [score, setScore] = useState(0);
+    let [correctAnswers, setCorrectAnswers] = useState(0);
 
     function addElementToSequence(arrSize) {
      randomIntForCircle = Math.floor(Math.random() * Math.floor(arrSize));
@@ -48,9 +49,23 @@ function Game() {
   return (
     <div className="Game">
       {["Red", "Green", "Blue", "Orange"].map((ColorName, index)=>{
-        return <CircleElement  transform={`scale(${transforms[index]}, ${transforms[index]})`} onClick={() =>{
+        return <CircleElement  transform={`scale(${transforms[index]}, ${transforms[index]})`} 
+        onClick={() =>{
           if(!animationPlaying){
             playAnimationForCircle(index)
+            if (sequenceArray[correctAnswers] === index) {
+              setCorrectAnswers(correctAnswers + 1);
+              if (correctAnswers === sequenceArray.length -1){
+                alert("Level Completed");
+                setScore(score + 1);
+                setCorrectAnswers(0);
+              }
+            } else {
+              alert("Game Over");
+              setScore(0);
+              setSequenceArray([]);
+              setCorrectAnswers(0);
+            }
           }
          }
          } color={ColorName}/>
