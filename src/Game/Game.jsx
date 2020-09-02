@@ -47,27 +47,14 @@ function Game() {
     
   return (
     <div className="Game">
-      <CircleElement  transform={`scale(${transforms[0]}, ${transforms[0]})`} onClick={() =>{
-                                                                                              if(!animationPlaying){
-                                                                                                playAnimationForCircle(0)
-                                                                                              }
-                                                                                             }
-                                                                                      } color={"Red"}/>
-      <CircleElement  transform={`scale(${transforms[1]}, ${transforms[1]})`} onClick={() => {
-                                                                                              if(!animationPlaying){
-                                                                                                playAnimationForCircle(1)
-                                                                                              }
-                                                                                             }} color={"Green"}/>
-      <CircleElement  transform={`scale(${transforms[2]}, ${transforms[2]})`} onClick={() =>{
-                                                                                              if(!animationPlaying){
-                                                                                                playAnimationForCircle(2)
-                                                                                              }
-                                                                                             }} color={"Blue"}/>
-      <CircleElement  transform={`scale(${transforms[3]}, ${transforms[3]})`} onClick={() =>{
-                                                                                              if(!animationPlaying){
-                                                                                                playAnimationForCircle(3)
-                                                                                              }
-                                                                                             }} color={"Orange"}/>
+      {["Red", "Green", "Blue", "Orange"].map((ColorName, index)=>{
+        return <CircleElement  transform={`scale(${transforms[index]}, ${transforms[index]})`} onClick={() =>{
+          if(!animationPlaying){
+            playAnimationForCircle(index)
+          }
+         }
+         } color={ColorName}/>
+      })}
       <button onClick={()=>{
         addElementToSequence(4)
         playSequence() }}>start game</button>
