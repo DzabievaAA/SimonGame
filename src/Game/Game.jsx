@@ -10,7 +10,30 @@ function Game() {
     let [animationPlaying, setAnimationPlaying] = useState(false);
     let [score, setScore] = useState(0);
     let [correctAnswers, setCorrectAnswers] = useState(0);
+    let [gameMoving, setGameMoving] = useState(true);
 
+
+
+    let textButton = ' ';
+    if(sequenceArray.length === 0) {
+      textButton = 'start';
+    } else {
+      textButton = 'next Lvl';
+    }
+
+  let buttonVision;
+  if(gameMoving === true) {
+    buttonVision = <button onClick={()=>{
+    addElementToSequence(4)
+    playSequence()
+    setGameMoving(false); }}>{textButton}</button>
+  }
+  else {
+    buttonVision = null;
+  }
+
+
+    
     function addElementToSequence(arrSize) {
      randomIntForCircle = Math.floor(Math.random() * Math.floor(arrSize));
      sequenceArray.push(randomIntForCircle);
@@ -45,7 +68,9 @@ function Game() {
         setTransforms(copyTransforms);
       }, 200 )
     }
-    
+
+
+
   return (
     <div className="Game">
       {["Red", "Green", "Blue", "Orange"].map((ColorName, index)=>{
@@ -56,31 +81,34 @@ function Game() {
             return;            
           }
           if(!animationPlaying){
+            
             playAnimationForCircle(index)
+           
             if (sequenceArray[correctAnswers] === index) {
               setCorrectAnswers(correctAnswers + 1);
               if (correctAnswers === sequenceArray.length -1){
                 alert("Level Completed");
                 setScore(score + 1);
                 setCorrectAnswers(0);
+                setGameMoving(true);
               }
             } else {
               alert("Game Over");
               setScore(0);
               setSequenceArray([]);
               setCorrectAnswers(0);
+              setGameMoving(true);
             }
           }
 
          }
          } color={ColorName}/>
       })}
-      <button onClick={()=>{
-        addElementToSequence(4)
-        playSequence() }}>start game</button>
+        {buttonVision}
       <Score text={score}/>
     </div>
   );
 }
+
 
 export default Game;
