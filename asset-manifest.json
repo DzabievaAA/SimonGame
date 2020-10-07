@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/SimonGame/static/css/main.1e3e183f.chunk.css",
+    "main.js": "/SimonGame/static/js/main.d7bb9002.chunk.js",
+    "main.js.map": "/SimonGame/static/js/main.d7bb9002.chunk.js.map",
+    "runtime-main.js": "/SimonGame/static/js/runtime-main.c0069961.js",
+    "runtime-main.js.map": "/SimonGame/static/js/runtime-main.c0069961.js.map",
+    "static/js/2.a1d1ed7b.chunk.js": "/SimonGame/static/js/2.a1d1ed7b.chunk.js",
+    "static/js/2.a1d1ed7b.chunk.js.map": "/SimonGame/static/js/2.a1d1ed7b.chunk.js.map",
+    "index.html": "/SimonGame/index.html",
+    "precache-manifest.443dc0e75f076867419e148a3950b313.js": "/SimonGame/precache-manifest.443dc0e75f076867419e148a3950b313.js",
+    "service-worker.js": "/SimonGame/service-worker.js",
+    "static/css/main.1e3e183f.chunk.css.map": "/SimonGame/static/css/main.1e3e183f.chunk.css.map",
+    "static/js/2.a1d1ed7b.chunk.js.LICENSE.txt": "/SimonGame/static/js/2.a1d1ed7b.chunk.js.LICENSE.txt",
+    "static/media/game.module.css": "/SimonGame/static/media/MiriamLibre-Regular.3ae1c901.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c0069961.js",
+    "static/js/2.a1d1ed7b.chunk.js",
+    "static/css/main.1e3e183f.chunk.css",
+    "static/js/main.d7bb9002.chunk.js"
+  ]
+}
